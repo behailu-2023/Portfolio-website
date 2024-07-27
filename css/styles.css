@@ -1,9 +1,10 @@
 :root {
-  --primary-color: dodgerblue;
-  --secondary-color: red;
+  --primary-color: #1e90ff;
+  --secondary-color: #ff6347;
   --dark-grey: #2b2b2b;
   --font-weight: 700;
   --font-size: 22px;
+  --bg-gradient: linear-gradient(to right, #1e90ff, #ff6347);
 }
 
 body {
@@ -11,16 +12,20 @@ body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
+  background: var(--bg-gradient);
+  color: #fff;
 }
 
 h1 {
   font-size: 30px;
   font-weight: var(--font-weight);
+  color: var(--primary-color);
 }
 
 h2 {
   font-size: 24px;
   font-weight: var(--font-weight);
+  color: var(--secondary-color);
 }
 
 h3 {
@@ -30,6 +35,7 @@ h3 {
 
 a {
   color: var(--primary-color);
+  transition: color 0.3s;
 }
 
 a:visited {
@@ -38,7 +44,8 @@ a:visited {
 
 a:hover,
 a:focus {
-  text-decoration: none;
+  color: var(--secondary-color);
+  text-decoration: underline;
 }
 
 a:active {
@@ -48,18 +55,20 @@ a:active {
 button {
   border: none;
   font-family: inherit;
-  background-color: rgb(226, 143, 36);
+  background-color: var(--primary-color);
   color: white;
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 button:hover,
 button:focus {
   cursor: pointer;
   opacity: 0.8;
+  transform: scale(1.05);
 }
 
 .button_secondary {
@@ -84,6 +93,7 @@ button:focus {
   margin-right: 40px;
   border-radius: 50%;
   flex: 1 1 100px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .page-footer {
@@ -91,6 +101,8 @@ button:focus {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .profile {
@@ -106,6 +118,7 @@ button:focus {
   display: flex;
   width: 100%;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .page-header__item {
@@ -136,32 +149,28 @@ button:focus {
 }
 
 .grid__item {
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.linkbutton {
-  text-align: right;
+.grid__item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.aboutme {
-  text-align: center;
-}
-
-.form {
-  text-align: center;
-}
-
-.contact {
-  text-align: center;
-}
-
+.linkbutton,
+.aboutme,
+.form,
+.contact,
 .mycontact {
   text-align: center;
 }
 
 .grid__item {
   display: inline-block;
-  width: 33%;
+  width: 100%;
 }
 
 @supports (display: grid) {
@@ -173,7 +182,6 @@ button:focus {
   }
 
   .grid__item {
-    background-color: lightgray;
     width: auto;
     min-height: auto;
     margin: 0;
@@ -217,46 +225,16 @@ button:focus {
   }
 }
 
-@media all and (max-width: 500px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media all and (min-width: 500px) and (max-width: 750px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media all and (max-width: 750px) {
-  .grid {
-    grid-gap: 10px;
-  }
-
-  .grid__item:last-child {
-    grid-column: auto/ auto;
-    grid-row: auto/ auto;
-  }
-
-  h1 {
-    font-size: 22px;
-  }
-}
-
 .button,
 button {
-  border: none;
   display: inline-block;
-  font-family: inherit;
-  background-color: #357b70;
+  background-color: var(--primary-color);
   color: white;
   text-decoration: none;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 5px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  transition-duration: 0.2s;
-  transition-property: opacity;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 button:hover,
@@ -265,6 +243,7 @@ button:focus,
 .button:focus {
   cursor: pointer;
   opacity: 0.8;
+  transform: scale(1.05);
 }
 
 @keyframes color-change {
@@ -290,7 +269,7 @@ button:focus,
 }
 
 @keyframes cloud-move {
-  form {
+  from {
     transform: translate(0, 50px);
   }
 
@@ -319,4 +298,75 @@ button:focus,
 
 .cloud-back {
   animation: 34s cloud-move-reverse infinite alternate linear;
+}
+
+/* Centering and Styling .table */
+.table {
+  margin: 0 auto;
+  width: 80%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+/* Styling Contact Forms */
+.form, .contact, .mycontact {
+  margin: 20px auto;
+  width: 50%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.form:hover, .contact:hover, .mycontact:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.form input, .form textarea,
+.contact input, .contact textarea,
+.mycontact input, .mycontact textarea {
+  width: calc(100% - 24px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form input[type="submit"], .contact input[type="submit"], .mycontact input[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.form input[type="submit"]:hover, .contact input[type="submit"]:hover, .mycontact input[type="submit"]:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
 }
